@@ -2,58 +2,65 @@
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
 
-drop table departments;
-drop table dept_manager;
-drop table employees;
-drop table titles;
-drop table salaries;
-drop table dept_emp;
-
-
-
 CREATE TABLE "departments" (
-    "dept_no" VARCHAR   NOT NULL,
-    "dept_name" VARCHAR   NOT NULL,
+    "dept_no" VARCHAR(4)   NOT NULL,
+    "dept_name" VARCHAR,
     CONSTRAINT "pk_departments" PRIMARY KEY (
         "dept_no"
      )
 );
 
 CREATE TABLE "dept_emp" (
+    "id" INT   NOT NULL,
     "emp_no" INT   NOT NULL,
-    "dept_no" VARCHAR   NOT NULL,
-    "from_date" VARCHAR   NOT NULL,
-    "to_date" VARCHAR   NOT NULL
+    "dept_no" VARCHAR(4)   NOT NULL,
+    "from_date" DATE,
+    "to_date" DATE,
+    CONSTRAINT "pk_dept_emp" PRIMARY KEY (
+        "id"
+     )
 );
 
 CREATE TABLE "dept_manager" (
+    "id" INT   NOT NULL,
     "emp_no" INT   NOT NULL,
-    "dept_no" VARCHAR   NOT NULL,
-    "from_date" VARCHAR   NOT NULL,
-    "to_date" VARCHAR   NOT NULL
+    "dept_no" VARCHAR(4)   NOT NULL,
+    "from_date" DATE,
+    "to_date" DATE,
+    CONSTRAINT "pk_dept_manager" PRIMARY KEY (
+        "id"
+     )
 );
 
 CREATE TABLE "salaries" (
+    "id" INT   NOT NULL,
     "emp_no" INT   NOT NULL,
-    "salary" INT   NOT NULL,
-    "from_date" VARCHAR   NOT NULL,
-    "to_date" VARCHAR   NOT NULL
+    "salary" INT,
+    "from_date" DATE,
+    "to_date" DATE,
+    CONSTRAINT "pk_salaries" PRIMARY KEY (
+        "id"
+     )
 );
 
 CREATE TABLE "titles" (
+    "id" SERIAL   NOT NULL,
     "emp_no" INT   NOT NULL,
-    "title" VARCHAR   NOT NULL,
-    "from_date" VARCHAR   NOT NULL,
-    "to_date" VARCHAR   NOT NULL
+    "title" VARCHAR,
+    "from_date" DATE,
+    "to_date" DATE,
+    CONSTRAINT "pk_titles" PRIMARY KEY (
+        "id"
+     )
 );
 
 CREATE TABLE "employees" (
     "emp_no" INT   NOT NULL,
-    "birth_date" VARCHAR   NOT NULL,
-    "first_name" VARCHAR   NOT NULL,
-    "last_name" VARCHAR   NOT NULL,
-    "gender" VARCHAR   NOT NULL,
-    "hire_date" VARCHAR   NOT NULL,
+    "first_name" VARCHAR,
+    "last_name" VARCHAR,
+    "hire_date" DATE,
+    "birth_date" DATE,
+    "gender" VARCHAR(1),
     CONSTRAINT "pk_employees" PRIMARY KEY (
         "emp_no"
      )

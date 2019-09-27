@@ -1,0 +1,192 @@
+1. List the following details of each employee: employee number, last name, first name, gender, and salary.
+
+        SELECT e.emp_no, e.first_name, e.last_name, e.gender, s.salary
+        FROM employees e 
+            INNER JOIN salaries s 
+                ON (e.emp_no = s.emp_no)
+        WHERE 1=1;
+
+            10005	"Kyoichi"	"Maliniak"	"M"	78228
+            10010	"Duangkaew"	"Piveteau"	"F"	72488
+            10011	"Mary"	"Sluis"	"F"	42365
+            10013	"Eberhardt"	"Terkki"	"M"	40000
+            10017	"Cristinel"	"Bouloucos"	"F"	71380
+            10035	"Alain"	"Chappelet"	"M"	41538
+            10037	"Pradeep"	"Makrucki"	"M"	40000
+            10045	"Moss"	"Shanbhogue"	"M"	41971
+            10051	"Hidefumi"	"Caine"	"M"	48817
+            10058	"Berhard"	"McFarlin"	"M"	52787
+            10078	"Danel"	"Mondadori"	"F"	47280
+            10085	"Kenroku"	"Malabarba"	"M"	40000
+            10096	"Jayson"	"Mandell"	"M"	61395
+            10117	"Kiyotoshi"	"Blokdijk"	"F"	52284
+            ...
+
+
+2. List employees who were hired in 1986.
+
+        SELECT e.emp_no, e.first_name, e.last_name, e.hire_date
+        FROM employees e
+        WHERE e.hire_date LIKE '1986%';
+
+            10001	"Georgi"	"Facello"	"1986-06-26"
+            10003	"Parto"	"Bamford"	"1986-08-28"
+            10004	"Chirstian"	"Koblick"	"1986-12-01"
+            10053	"Sanjiv"	"Zschoche"	"1986-02-04"
+            10066	"Kwee"	"Schusler"	"1986-02-26"
+            10079	"Kshitij"	"Gils"	"1986-03-27"
+            10081	"Zhongwei"	"Rosen"	"1986-10-30"
+            10087	"Xinglin"	"Eugenio"	"1986-09-08"
+            10089	"Sudharsan"	"Flasterstein"	"1986-08-12"
+            10090	"Kendra"	"Hofting"	"1986-03-14"
+            ...
+
+3. List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name, and start and end employment dates.
+
+        SELECT d.dept_no, d.dept_name, e.emp_no, e.first_name, e.last_name, dm.from_date, dm.to_date
+        FROM dept_manager dm
+            INNER JOIN employees e
+                ON (e.emp_no = dm.emp_no)
+            INNER JOIN departments d
+                on (dm.dept_no = d.dept_no)
+        WHERE 1=1;
+
+            "d001"	"Marketing"	110022	"Margareta"	"Markovitch"	"1985-01-01"	"1991-10-01"
+            "d001"	"Marketing"	110039	"Vishwani"	"Minakawa"	"1991-10-01"	"9999-01-01"
+            "d002"	"Finance"	110085	"Ebru"	"Alpin"	"1985-01-01"	"1989-12-17"
+            "d002"	"Finance"	110114	"Isamu"	"Legleitner"	"1989-12-17"	"9999-01-01"
+            "d003"	"Human Resources"	110183	"Shirish"	"Ossenbruggen"	"1985-01-01"	"1992-03-21"
+            "d003"	"Human Resources"	110228	"Karsten"	"Sigstam"	"1992-03-21"	"9999-01-01"
+            "d004"	"Production"	110303	"Krassimir"	"Wegerle"	"1985-01-01"	"1988-09-09"
+            "d004"	"Production"	110344	"Rosine"	"Cools"	"1988-09-09"	"1992-08-02"
+            "d004"	"Production"	110386	"Shem"	"Kieras"	"1992-08-02"	"1996-08-30"
+            "d004"	"Production"	110420	"Oscar"	"Ghazalie"	"1996-08-30"	"9999-01-01"
+            "d005"	"Development"	110511	"DeForest"	"Hagimont"	"1985-01-01"	"1992-04-25"
+            "d005"	"Development"	110567	"Leon"	"DasSarma"	"1992-04-25"	"9999-01-01"
+            "d006"	"Quality Management"	110725	"Peternela"	"Onuegbe"	"1985-01-01"	"1989-05-06"
+            "d006"	"Quality Management"	110765	"Rutger"	"Hofmeyr"	"1989-05-06"	"1991-09-12"
+            "d006"	"Quality Management"	110800	"Sanjoy"	"Quadeer"	"1991-09-12"	"1994-06-28"
+            "d006"	"Quality Management"	110854	"Dung"	"Pesch"	"1994-06-28"	"9999-01-01"
+            "d007"	"Sales"	111035	"Przemyslawa"	"Kaelbling"	"1985-01-01"	"1991-03-07"
+            "d007"	"Sales"	111133	"Hauke"	"Zhang"	"1991-03-07"	"9999-01-01"
+            "d008"	"Research"	111400	"Arie"	"Staelin"	"1985-01-01"	"1991-04-08"
+            "d008"	"Research"	111534	"Hilary"	"Kambil"	"1991-04-08"	"9999-01-01"
+            "d009"	"Customer Service"	111692	"Tonny"	"Butterworth"	"1985-01-01"	"1988-10-17"
+            "d009"	"Customer Service"	111784	"Marjo"	"Giarratana"	"1988-10-17"	"1992-09-08"
+            "d009"	"Customer Service"	111877	"Xiaobin"	"Spinelli"	"1992-09-08"	"1996-01-03"
+            "d009"	"Customer Service"	111939	"Yuchang"	"Weedman"	"1996-01-03"	"9999-01-01"
+
+4. List the department of each employee with the following information: employee number, last name, first name, and department name.
+
+        SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
+        FROM dept_emp de
+            INNER JOIN employees e
+                ON (de.emp_no = e.emp_no)
+            INNER JOIN departments d
+                ON (d.dept_no = de.dept_no)
+        WHERE 1=1
+
+            10005	"Maliniak"	"Kyoichi"	"Human Resources"
+            10010	"Piveteau"	"Duangkaew"	"Production"
+            10010	"Piveteau"	"Duangkaew"	"Quality Management"
+            10011	"Sluis"	"Mary"	"Customer Service"
+            10013	"Terkki"	"Eberhardt"	"Human Resources"
+            10017	"Bouloucos"	"Cristinel"	"Marketing"
+            10035	"Chappelet"	"Alain"	"Production"
+            10037	"Makrucki"	"Pradeep"	"Development"
+            10045	"Shanbhogue"	"Moss"	"Production"
+            10051	"Caine"	"Hidefumi"	"Production"
+            ...
+
+5. List all employees whose first name is "Hercules" and last names begin with "B."
+
+        SELECT e.emp_no, e.first_name, e.last_name
+        FROM employees e
+        WHERE 1=1
+        AND e.first_name = 'Hercules'
+        AND e.last_name Like 'B%';
+
+            10282	"Hercules"	"Benzmuller"
+            11337	"Hercules"	"Brendel"
+            20780	"Hercules"	"Baranowski"
+            21870	"Hercules"	"Barreiro"
+            38161	"Hercules"	"Baer"
+            89382	"Hercules"	"Bernardinello"
+            89844	"Hercules"	"Basagni"
+            90712	"Hercules"	"Biran"
+            210097	"Hercules"	"Bernatsky"
+            213553	"Hercules"	"Bail"
+            236650	"Hercules"	"Birge"
+            241391	"Hercules"	"Bisiani"
+            250175	"Hercules"	"Bodoff"
+            276181	"Hercules"	"Biron"
+            279195	"Hercules"	"Buchter"
+            294352	"Hercules"	"Bain"
+            435221	"Hercules"	"Bahr"
+            438081	"Hercules"	"Baak"
+            461517	"Hercules"	"Benantar"
+            482148	"Hercules"	"Berstel"
+
+6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
+
+        SELECT e.emp_no, e.first_name, e.last_name, d.dept_name
+        FROM employees e
+            INNER JOIN dept_emp de
+                ON (e.emp_no = de.emp_no)
+            INNER JOIN departments d
+                ON (d.dept_no = de.dept_no)
+        WHERE 1=1
+        AND d.dept_name = 'Sales';
+
+            10002	"Bezalel"	"Simmel"	"Sales"
+            10016	"Kazuhito"	"Cappelletti"	"Sales"
+            10034	"Bader"	"Swan"	"Sales"
+            10041	"Uri"	"Lenart"	"Sales"
+            10050	"Yinghua"	"Dredge"	"Sales"
+            10053	"Sanjiv"	"Zschoche"	"Sales"
+            10060	"Breannda"	"Billingsley"	"Sales"
+            10061	"Tse"	"Herber"	"Sales"
+            10068	"Charlene"	"Brattka"	"Sales"
+            10087	"Xinglin"	"Eugenio"	"Sales"
+            ...
+
+7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+
+        SELECT e.emp_no, e.first_name, e.last_name, d.dept_name
+        FROM employees e
+            INNER JOIN dept_emp de
+                ON (e.emp_no = de.emp_no)
+            INNER JOIN departments d
+                ON (d.dept_no = de.dept_no)
+        WHERE 1=1
+        AND d.dept_name = 'Sales'
+        OR d.dept_name = 'Development';
+
+            10001	"Georgi"	"Facello"	"Development"
+            10002	"Bezalel"	"Simmel"	"Sales"
+            10006	"Anneke"	"Preusig"	"Development"
+            10008	"Saniya"	"Kalloufi"	"Development"
+            10012	"Patricio"	"Bridgland"	"Development"
+            10014	"Berni"	"Genin"	"Development"
+            10016	"Kazuhito"	"Cappelletti"	"Sales"
+            10018	"Kazuhide"	"Peha"	"Development"
+            10021	"Ramzi"	"Erde"	"Development"
+            10022	"Shahaf"	"Famili"	"Development"
+
+8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+
+        SELECT e.last_name, count(e.last_name) as last_count
+        FROM employees e
+        GROUP BY e.last_name
+        ORDER BY last_count DESC
+
+            "Baba"	"226"
+            "Coorg"	"223"
+            "Gelosh"	"223"
+            "Farris"	"222"
+            "Sudbeck"	"222"
+            "Adachi"	"221"
+            "Osgood"	"220"
+            "Mandell"	"218"
+            "Masada"	"218"
+            "Neiman"	"218"
