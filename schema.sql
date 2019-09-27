@@ -1,43 +1,49 @@
 ﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
+DROP TABLE IF EXISTS dept_emp;
+DROP TABLE IF EXISTS dept_manager;
+DROP TABLE IF EXISTS salaries;
+DROP TABLE IF EXISTS titles;
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS departments;
 
 CREATE TABLE "departments" (
     "dept_no" VARCHAR(4)   NOT NULL,
-    "dept_name" VARCHAR,
+    "dept_name" VARCHAR   NOT NULL,
     CONSTRAINT "pk_departments" PRIMARY KEY (
         "dept_no"
      )
 );
 
 CREATE TABLE "dept_emp" (
-    "id" INT   NOT NULL,
+    "id" SERIAL   NOT NULL,
     "emp_no" INT   NOT NULL,
     "dept_no" VARCHAR(4)   NOT NULL,
-    "from_date" DATE,
-    "to_date" DATE,
+    "from_date" DATE   NOT NULL,
+    "to_date" DATE   NOT NULL,
     CONSTRAINT "pk_dept_emp" PRIMARY KEY (
         "id"
      )
 );
 
 CREATE TABLE "dept_manager" (
-    "id" INT   NOT NULL,
+    "id" SERIAL   NOT NULL,
     "emp_no" INT   NOT NULL,
     "dept_no" VARCHAR(4)   NOT NULL,
-    "from_date" DATE,
-    "to_date" DATE,
+    "from_date" DATE   NOT NULL,
+    "to_date" DATE   NOT NULL,
     CONSTRAINT "pk_dept_manager" PRIMARY KEY (
         "id"
      )
 );
 
 CREATE TABLE "salaries" (
-    "id" INT   NOT NULL,
+    "id" SERIAL   NOT NULL,
     "emp_no" INT   NOT NULL,
-    "salary" INT,
-    "from_date" DATE,
-    "to_date" DATE,
+    "salary" INT   NOT NULL,
+    "from_date" DATE   NOT NULL,
+    "to_date" DATE   NOT NULL,
     CONSTRAINT "pk_salaries" PRIMARY KEY (
         "id"
      )
@@ -46,21 +52,21 @@ CREATE TABLE "salaries" (
 CREATE TABLE "titles" (
     "id" SERIAL   NOT NULL,
     "emp_no" INT   NOT NULL,
-    "title" VARCHAR,
-    "from_date" DATE,
-    "to_date" DATE,
+    "title" VARCHAR   NOT NULL,
+    "from_date" DATE   NOT NULL,
+    "to_date" DATE   NOT NULL,
     CONSTRAINT "pk_titles" PRIMARY KEY (
         "id"
      )
 );
 
 CREATE TABLE "employees" (
-    "emp_no" INT   NOT NULL,
-    "first_name" VARCHAR,
-    "last_name" VARCHAR,
-    "hire_date" DATE,
-    "birth_date" DATE,
-    "gender" VARCHAR(1),
+    "emp_no" SERIAL   NOT NULL,
+    "first_name" VARCHAR   NOT NULL,
+    "last_name" VARCHAR   NOT NULL,
+    "hire_date" DATE   NOT NULL,
+    "birth_date" DATE   NOT NULL,
+    "gender" VARCHAR(1)   NOT NULL,
     CONSTRAINT "pk_employees" PRIMARY KEY (
         "emp_no"
      )
